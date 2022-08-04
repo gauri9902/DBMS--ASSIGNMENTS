@@ -115,16 +115,6 @@ mysql> select name from webseries where lead_actor="IAN";
 +------+
 1 row in set (0.00 sec)
 
-mysql> select imdb_rating from webseries where imdb_rating>8.2;
-+-------------+
-| imdb_rating |
-+-------------+
-|         9.8 |
-|         9.3 |
-|         8.4 |
-+-------------+
-3 rows in set (0.00 sec)
-
 mysql> select name,lead_actor,imdb_rating where imdb_rating>8.2;
 ERROR 1054 (42S22): Unknown column 'name' in 'field list'
 mysql> select name,lead_actor,imdb_rating from webseries where imdb_rating>8.2;
