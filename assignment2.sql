@@ -101,5 +101,54 @@ mysql> select * from users cross join userprofile;
 +------+-----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
 16 rows in set (0.00 sec)
 
+mysql> use series;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
 
+Database changed
+mysql> select * from series;
++---------------------+--------------------+--------------+-------------+--------------+-----------+
+| series_name         | lead_actor         | release_date | imdb_rating | platform     | series_id |
++---------------------+--------------------+--------------+-------------+--------------+-----------+
+| The vampire dairies | Ian somelhalder    |         2009 |         8.5 | Amazon prime |      NULL |
+| Stranger things     | Fin wolfhard       |         2018 |         7.8 | Netflix      |      NULL |
+| 13 Reason why       | Katherine langford |         2013 |         8.1 | Netflix      |      NULL |
+| Mismatched          | Rohit saraf        |         2009 |         9.1 | Netflix      |      NULL |
+| Originals           | Joseph morgan      |         2013 |         8.9 | Amazon prime |      NULL |
++---------------------+--------------------+--------------+-------------+--------------+-----------+
+5 rows in set (0.00 sec)
 
+mysql> select platform ,count(platform) from series group by platform;
++--------------+-----------------+
+| platform     | count(platform) |
++--------------+-----------------+
+| Amazon prime |               2 |
+| Netflix      |               3 |
++--------------+-----------------+
+2 rows in set (0.03 sec)
+
+/*order by*/
+
+mysql> select * from series order by lead_actor desc;
++---------------------+--------------------+--------------+-------------+--------------+-----------+
+| series_name         | lead_actor         | release_date | imdb_rating | platform     | series_id |
++---------------------+--------------------+--------------+-------------+--------------+-----------+
+| Mismatched          | Rohit saraf        |         2009 |         9.1 | Netflix      |      NULL |
+| 13 Reason why       | Katherine langford |         2013 |         8.1 | Netflix      |      NULL |
+| Originals           | Joseph morgan      |         2013 |         8.9 | Amazon prime |      NULL |
+| The vampire dairies | Ian somelhalder    |         2009 |         8.5 | Amazon prime |      NULL |
+| Stranger things     | Fin wolfhard       |         2018 |         7.8 | Netflix      |      NULL |
++---------------------+--------------------+--------------+-------------+--------------+-----------+
+5 rows in set (0.02 sec)
+
+/*sub query*/
+
+mysql> select * from series where release_date>(select release_date from series where series_name="Mismatched");
++-----------------+--------------------+--------------+-------------+--------------+-----------+
+| series_name     | lead_actor         | release_date | imdb_rating | platform     | series_id |
++-----------------+--------------------+--------------+-------------+--------------+-----------+
+| Stranger things | Fin wolfhard       |         2018 |         7.8 | Netflix      |      NULL |
+| 13 Reason why   | Katherine langford |         2013 |         8.1 | Netflix      |      NULL |
+| Originals       | Joseph morgan      |         2013 |         8.9 | Amazon prime |      NULL |
++-----------------+--------------------+--------------+-------------+--------------+-----------+
+3 rows in set (0.00 sec)
