@@ -55,5 +55,51 @@ mysql> select * from users inner join userprofile on users.auid=userprofile.auid
 +------+----------+----------+---------------------+----------+------+------+-----------+----------+-----------------------+-------------+
 1 row in set (0.00 sec)
 
+mysql> select * from users left join userprofile on users.auid=userprofile.auid; 
++------+-----------+----------+---------------------+----------+------+------+-----------+----------+-----------------------+-------------+
+| auid | username  | password | createdata          | isactive | apid | auid | firstname | lastname | email                 | phone       |
++------+-----------+----------+---------------------+----------+------+------+-----------+----------+-----------------------+-------------+
+|    1 | admin     | pswrd123 | 2022-08-22 00:00:00 |        1 |    1 |    1 | Jack      | Wolf     | bettestroom@gmail.com | 67786808655 |
+|    2 | admin1    | pass506  | 2022-08-22 00:00:00 |        1 | NULL | NULL | NULL      | NULL     | NULL                  | NULL        |
+|    4 | fox12     | 45@jgo0  | 2022-08-22 00:00:00 |        1 | NULL | NULL | NULL      | NULL     | NULL                  | NULL        |
+|    6 | lexus1267 | 98hgk    | 2022-08-22 00:00:00 |        1 | NULL | NULL | NULL      | NULL     | NULL                  | NULL        |
++------+-----------+----------+---------------------+----------+------+------+-----------+----------+-----------------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from users right join userprofile on users.auid=userprofile.auid
+;
++------+----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
+| auid | username | password | createdata          | isactive | apid | auid | firstname | lastname  | email                 | phone        |
++------+----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
+|    1 | admin    | pswrd123 | 2022-08-22 00:00:00 |        1 |    1 |    1 | Jack      | Wolf      | bettestroom@gmail.com | 67786808655  |
+| NULL | NULL     | NULL     | NULL                |     NULL |    2 |    3 | Tom       | Collins   | tnkc@outlook.com      | 76896797676  |
+| NULL | NULL     | NULL     | NULL                |     NULL |    4 |    5 | Bill      | Fonskin   | bill_1290@gmail.com   | 44976786864  |
+| NULL | NULL     | NULL     | NULL                |     NULL |    7 |    7 | Ivan      | Levchenko | ivan_new@outlook.com  | 876447478767 |
++------+----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from users cross join userprofile;
++------+-----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
+| auid | username  | password | createdata          | isactive | apid | auid | firstname | lastname  | email                 | phone        |
++------+-----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
+|    6 | lexus1267 | 98hgk    | 2022-08-22 00:00:00 |        1 |    1 |    1 | Jack      | Wolf      | bettestroom@gmail.com | 67786808655  |
+|    4 | fox12     | 45@jgo0  | 2022-08-22 00:00:00 |        1 |    1 |    1 | Jack      | Wolf      | bettestroom@gmail.com | 67786808655  |
+|    2 | admin1    | pass506  | 2022-08-22 00:00:00 |        1 |    1 |    1 | Jack      | Wolf      | bettestroom@gmail.com | 67786808655  |
+|    1 | admin     | pswrd123 | 2022-08-22 00:00:00 |        1 |    1 |    1 | Jack      | Wolf      | bettestroom@gmail.com | 67786808655  |
+|    6 | lexus1267 | 98hgk    | 2022-08-22 00:00:00 |        1 |    2 |    3 | Tom       | Collins   | tnkc@outlook.com      | 76896797676  |
+|    4 | fox12     | 45@jgo0  | 2022-08-22 00:00:00 |        1 |    2 |    3 | Tom       | Collins   | tnkc@outlook.com      | 76896797676  |
+|    2 | admin1    | pass506  | 2022-08-22 00:00:00 |        1 |    2 |    3 | Tom       | Collins   | tnkc@outlook.com      | 76896797676  |
+|    1 | admin     | pswrd123 | 2022-08-22 00:00:00 |        1 |    2 |    3 | Tom       | Collins   | tnkc@outlook.com      | 76896797676  |
+|    6 | lexus1267 | 98hgk    | 2022-08-22 00:00:00 |        1 |    4 |    5 | Bill      | Fonskin   | bill_1290@gmail.com   | 44976786864  |
+|    4 | fox12     | 45@jgo0  | 2022-08-22 00:00:00 |        1 |    4 |    5 | Bill      | Fonskin   | bill_1290@gmail.com   | 44976786864  |
+|    2 | admin1    | pass506  | 2022-08-22 00:00:00 |        1 |    4 |    5 | Bill      | Fonskin   | bill_1290@gmail.com   | 44976786864  |
+|    1 | admin     | pswrd123 | 2022-08-22 00:00:00 |        1 |    4 |    5 | Bill      | Fonskin   | bill_1290@gmail.com   | 44976786864  |
+|    6 | lexus1267 | 98hgk    | 2022-08-22 00:00:00 |        1 |    7 |    7 | Ivan      | Levchenko | ivan_new@outlook.com  | 876447478767 |
+|    4 | fox12     | 45@jgo0  | 2022-08-22 00:00:00 |        1 |    7 |    7 | Ivan      | Levchenko | ivan_new@outlook.com  | 876447478767 |
+|    2 | admin1    | pass506  | 2022-08-22 00:00:00 |        1 |    7 |    7 | Ivan      | Levchenko | ivan_new@outlook.com  | 876447478767 |
+|    1 | admin     | pswrd123 | 2022-08-22 00:00:00 |        1 |    7 |    7 | Ivan      | Levchenko | ivan_new@outlook.com  | 876447478767 |
++------+-----------+----------+---------------------+----------+------+------+-----------+-----------+-----------------------+--------------+
+16 rows in set (0.00 sec)
+
 
 
